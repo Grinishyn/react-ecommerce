@@ -1,0 +1,10 @@
+#home-button:hover,
+#cart-button:hover {
+    border: solid 3px rgb(3, 209, 209);
+    border-radius: 5px;
+}
+
+#home-button,
+#cart-button {
+    border: solid 3px rgb(1, 1, 1, 0);
+}

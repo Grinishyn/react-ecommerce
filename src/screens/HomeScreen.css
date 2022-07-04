@@ -1,0 +1,53 @@
+.article {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 20px;
+    padding: 15px;
+    border: solid lightgreen 3px;
+    border-radius: 7%;
+}
+
+.name-price-description {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    justify-content: center;
+}
+
+.name-price {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-bottom: 10px;
+}
+
+.name {
+    font-size: large;
+    color: dodgerblue;
+}
+
+.description {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 20px;
+    color: rgb(16, 114, 212);
+}
+
+.price {
+    color: rgb(7, 103, 199);
+}
+
+.image {
+    width: 210px;
+}
+
+#page-borders-articles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.colored-border {
+    background-color: lightgreen;
+    width: 10%;
+}
