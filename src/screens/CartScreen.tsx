@@ -1,9 +1,8 @@
-import { Button, Container, Grid } from "@mui/material"
-import React, { useState } from "react"
-import MyHeading from "../components/MyHeading"
-import { cartAtomStorage } from "../atom"
-import { useAtom } from "jotai"
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag"
+import { Button, Container, Grid } from "@mui/material"
+import { useAtom } from "jotai"
+import { cartAtomStorage } from "../atom"
+import MyHeading from "../components/MyHeading"
 
 export default function CartScreen() {
     const [cart, setCart] = useAtom(cartAtomStorage)
@@ -22,7 +21,12 @@ export default function CartScreen() {
                 //               setTotPrice(newTotPrice)
                 totPrice += article.price * article.itemNumber
                 return (
-                    <Grid item xs={12} className="article">
+                    <Grid
+                        item
+                        xs={12}
+                        className="article"
+                        style={{ height: 80 }}
+                    >
                         <div className="name-price-description">
                             <Grid className="name-price">
                                 <div

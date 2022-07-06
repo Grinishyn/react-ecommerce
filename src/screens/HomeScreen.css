@@ -1,16 +1,13 @@
 .article {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: 20px;
-    padding: 15px;
-    border: solid lightgreen 3px;
-    border-radius: 7%;
+    padding-top: 8px;
+    padding-left: 24px;
+    border: solid lightgreen 2px;
+    border-radius: 4%;
+    height: 250px;
 }
 
-.name-price-description {
-    display: flex;
-    flex-direction: column;
+.name-price-buttons {
     padding-bottom: 10px;
     justify-content: center;
 }
@@ -38,7 +35,8 @@
 }
 
 .image {
-    width: 210px;
+    margin-left: 24px;
+    width: 150%;
 }
 
 #page-borders-articles {
@@ -49,5 +47,6 @@
 
 .colored-border {
     background-color: lightgreen;
-    width: 10%;
+    width: 6%;
+    border-right: solid rgb(17, 148, 17) 2px;
 }

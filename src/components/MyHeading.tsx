@@ -1,6 +1,5 @@
-import { Box, Grid } from "@mui/material"
-import React, { Component } from "react"
-import { Link, Route, Routes, useNavigate } from "react-router-dom"
+import { Box } from "@mui/material"
+import { useNavigate } from "react-router-dom"
 import "./MyHeading.css"
 
 function MyHeading() {
@@ -11,10 +10,12 @@ function MyHeading() {
             style={{
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center"
+                alignItems: "center",
+                backgroundColor: "lightgreen",
+                fontFamily: "cursive"
             }}
         >
-            <div>notAScam.com</div>
+            <div style={{ fontSize: 60 }}>notAScam.com</div>
 
             <div
                 style={{

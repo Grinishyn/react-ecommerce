@@ -1,14 +1,12 @@
-import { Button, Container, Grid } from "@mui/material"
-import React, { useEffect, useState } from "react"
-import { IArticle } from "../schemas/schema"
-import { loadArticles } from "../api/fetches"
-import { Box } from "@mui/system"
-import Heading from "../components/MyHeading"
-import MyHeading from "../components/MyHeading"
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag"
-import { cartAtomStorage } from "../atom"
+import { Button, Grid } from "@mui/material"
 import { useAtom } from "jotai"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { loadArticles } from "../api/fetches"
+import { cartAtomStorage } from "../atom"
+import MyHeading from "../components/MyHeading"
+import { IArticle } from "../schemas/schema"
 
 export default function HomeScreen() {
     const [articles, setArticles] = useState<IArticle[]>()
@@ -40,10 +38,6 @@ export default function HomeScreen() {
             })
     }, [])
 
-    useEffect(() => {
-        console.log(cart)
-    }, [cart])
-
     return (
         <div id="page-container">
             <MyHeading />
@@ -52,8 +46,12 @@ export default function HomeScreen() {
                 <Grid container spacing={0}>
                     {articles?.map((article, indexArticle) => {
                         return (
-                            <Grid item xs={12} className="article">
-                                <div className="name-price-description">
+                            <Grid item xs={4} className="article">
+                                <Grid
+                                    item
+                                    xs={6}
+                                    className="name-price-buttons"
+                                >
                                     <Grid className="name-price">
                                         <div
                                             className="name"
@@ -67,107 +65,111 @@ export default function HomeScreen() {
                                             €{article.price}
                                         </div>
                                     </Grid>
-                                    <div className="description">
-                                        {article.description}
-                                    </div>
-                                </div>
-                                <img
-                                    alt=""
-                                    className="image"
-                                    src={`${article.image}`}
-                                ></img>
-                                <div className="button-container">
-                                    <Button
-                                        className="add-to-cart-button"
-                                        variant="outlined"
-                                        style={{ color: "green" }}
-                                        onClick={() => {
-                                            if (cart) {
-                                                let newCart = [...cart]
-                                                let elementExists =
-                                                    newCart.find(
-                                                        (a) =>
-                                                            a.name ===
-                                                            article.name
-                                                    )
-                                                if (elementExists) {
-                                                    let elementIndex =
-                                                        newCart.findIndex(
-                                                            (a) =>
-                                                                a.name ===
-                                                                article.name
-                                                        )
-                                                    newCart[
-                                                        elementIndex
-                                                    ].itemNumber += 1
-                                                } else {
-                                                    newCart.push({
-                                                        name: article.name,
-                                                        price: article.price,
-                                                        itemNumber: 1
-                                                    })
-                                                }
-                                                setCart(newCart)
-                                            } else {
-                                                let newCart = [
-                                                    {
-                                                        name: article.name,
-                                                        price: article.price,
-                                                        itemNumber: 1
-                                                    }
-                                                ]
-                                                setCart(newCart)
-                                            }
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "row"
                                         }}
                                     >
-                                        <ShoppingBagIcon />
-                                    </Button>
-                                    <Button
-                                        className="remove-from-cart-button"
-                                        variant="outlined"
-                                        style={{ color: "red" }}
-                                        onClick={() => {
-                                            if (cart) {
-                                                let newCart = [...cart]
-                                                let elementExists =
-                                                    newCart.find(
-                                                        (a) =>
-                                                            a.name ===
-                                                            article.name
-                                                    )
-                                                if (elementExists) {
-                                                    let elementIndex =
-                                                        newCart.findIndex(
+                                        <Button
+                                            className="add-to-cart-button"
+                                            variant="outlined"
+                                            style={{ color: "green" }}
+                                            onClick={() => {
+                                                if (cart) {
+                                                    let newCart = [...cart]
+                                                    let elementExists =
+                                                        newCart.find(
                                                             (a) =>
                                                                 a.name ===
                                                                 article.name
                                                         )
-                                                    if (
-                                                        newCart[elementIndex]
-                                                            .itemNumber === 1
-                                                    ) {
-                                                        newCart.splice(
-                                                            elementIndex,
-                                                            1
-                                                        )
-                                                    } else {
+                                                    if (elementExists) {
+                                                        let elementIndex =
+                                                            newCart.findIndex(
+                                                                (a) =>
+                                                                    a.name ===
+                                                                    article.name
+                                                            )
                                                         newCart[
                                                             elementIndex
-                                                        ].itemNumber -= 1
+                                                        ].itemNumber += 1
+                                                    } else {
+                                                        newCart.push({
+                                                            name: article.name,
+                                                            price: article.price,
+                                                            itemNumber: 1
+                                                        })
                                                     }
+                                                    setCart(newCart)
+                                                } else {
+                                                    let newCart = [
+                                                        {
+                                                            name: article.name,
+                                                            price: article.price,
+                                                            itemNumber: 1
+                                                        }
+                                                    ]
+                                                    setCart(newCart)
                                                 }
-                                                setCart(newCart)
-                                            }
-                                        }}
-                                    >
-                                        <ShoppingBagIcon />
-                                    </Button>
-                                </div>
+                                            }}
+                                        >
+                                            <ShoppingBagIcon />
+                                        </Button>
+                                        <Button
+                                            className="remove-from-cart-button"
+                                            variant="outlined"
+                                            style={{ color: "red" }}
+                                            onClick={() => {
+                                                if (cart) {
+                                                    let newCart = [...cart]
+                                                    let elementExists =
+                                                        newCart.find(
+                                                            (a) =>
+                                                                a.name ===
+                                                                article.name
+                                                        )
+                                                    if (elementExists) {
+                                                        let elementIndex =
+                                                            newCart.findIndex(
+                                                                (a) =>
+                                                                    a.name ===
+                                                                    article.name
+                                                            )
+                                                        if (
+                                                            newCart[
+                                                                elementIndex
+                                                            ].itemNumber === 1
+                                                        ) {
+                                                            newCart.splice(
+                                                                elementIndex,
+                                                                1
+                                                            )
+                                                        } else {
+                                                            newCart[
+                                                                elementIndex
+                                                            ].itemNumber -= 1
+                                                        }
+                                                    }
+                                                    setCart(newCart)
+                                                }
+                                            }}
+                                        >
+                                            <ShoppingBagIcon />
+                                        </Button>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <img
+                                        alt=""
+                                        className="image"
+                                        src={`${article.image}`}
+                                    ></img>
+                                </Grid>
                             </Grid>
                         )
                     })}
                 </Grid>
-                <div className="colored-border"></div>
             </div>
         </div>
     )
